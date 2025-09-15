@@ -12,6 +12,12 @@ connectDB();
 
 // Initialize app
 const app = express();
+// ✅ CORS middleware goes here, before routes
+app.use(cors({
+  origin: "http://localhost:3000", // allow requests from your frontend
+  credentials: true,               // needed if using cookies/auth
+}));
+
 
 // Middleware
 app.use(cors());
