@@ -19,8 +19,8 @@ app.use(cors({
     "http://localhost:3000",       // local dev
     "https://your-frontend-url.com" // deployed frontend (if any)
   ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true, // allow cookies/auth headers
+ methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+ credentials: true, // allow cookies/auth headers
 }));
 
 // Middleware
