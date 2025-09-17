@@ -12,15 +12,18 @@ connectDB();
 
 // Initialize app
 const app = express();
-// ✅ CORS middleware goes here, before routes
+
+// ✅ Proper CORS setup
 app.use(cors({
-  origin: "http://localhost:3000", // allow requests from your frontend
-  credentials: true,               // needed if using cookies/auth
+  origin: [
+    "http://localhost:3000",       // local dev
+    "https://your-frontend-url.com" // deployed frontend (if any)
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true, // allow cookies/auth headers
 }));
 
-
 // Middleware
-app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -33,30 +36,20 @@ const lecturerRoutes = require("./routes/lecturerRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const assignmentRoutes = require("./routes/assignmentRoutes");
 const userRoutes = require("./routes/userRoutes");
-const taskRoutes = require('./routes/TaskRoutes'); // Adjust path as needed
-const submissionRoutes = require('./routes/submissionRoutes'); 
+const taskRoutes = require("./routes/TaskRoutes");
+const submissionRoutes = require("./routes/submissionRoutes");
 
-
-
-// Use routes
 // Use routes
 app.use("/api/auth", authRoutes);
 app.use("/api/students", studentRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/assignments", assignmentRoutes);
 app.use("/api/classrooms", classroomRoutes);
-app.use("/api/lecturers", lecturerRoutes);   // ✅ now mounted
+app.use("/api/lecturers", lecturerRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/users", userRoutes);
-// Register the routes
-app.use('/api/tasks', taskRoutes);
-app.use('/api/submissions', submissionRoutes);
-
-
-
-
-
-
+app.use("/api/tasks", taskRoutes);
+app.use("/api/submissions", submissionRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;
