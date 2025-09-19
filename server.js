@@ -43,7 +43,7 @@ const lecturerRoutes = require("./routes/lecturerRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const assignmentRoutes = require("./routes/assignmentRoutes");
 const userRoutes = require("./routes/userRoutes");
-const taskRoutes = require("./routes/taskRoutes");
+const taskRoutes = require("./routes/TaskRoutes");
 const submissionRoutes = require("./routes/submissionRoutes");
 
 // ============================
